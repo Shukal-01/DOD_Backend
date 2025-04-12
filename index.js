@@ -90,7 +90,7 @@ app.use("/", (req, res) => {
 // globalSocketServer();
 // socketIoServer();
 
-(async () => {
+// (async () => {
   await connectDB(); // 🔑 Ensure DB is connected
 
   app.listen(port, () => {
@@ -100,4 +100,4 @@ app.use("/", (req, res) => {
   // Start sockets or other async features here
   globalSocketServer();
   socketIoServer();
-})();
+// })();
