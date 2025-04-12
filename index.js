@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const port = process.env.PORT;
@@ -91,7 +91,7 @@ app.use("/", (req, res) => {
 // socketIoServer();
 
 // (async () => {
-  await connectDB(); // 🔑 Ensure DB is connected
+  connectDB(); // 🔑 Ensure DB is connected
 
   app.listen(port, () => {
     console.log(`🚀 Server started on http://localhost:${port}`);
