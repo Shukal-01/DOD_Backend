@@ -41,7 +41,7 @@ app.set('trust proxy', 1);
 
 app.use(fileupload());
 
-app.use(express.static(path.join(__dirname, "assets")));
+app.use('/assets', express.static(path.join(__dirname, "assets")));
 app.use("/auth", loginRoutes);
 app.use("/auth/*", loginRoutes);
 app.use("/web", webRoutes);
