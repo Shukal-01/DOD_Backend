@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const port = process.env.PORT;
@@ -12,8 +12,7 @@ const fileupload = require("express-fileupload");
 const app = express();
 
 //-----------------------------------------mongoose connection end
-const connectDB = require("./config.js");
-
+const config = require("./config.js");
 //-----------------------------------------mongoose connection end
 
 const loginRoutes = require("./routes/auth/routes");
@@ -82,22 +81,10 @@ app.use("/", (req, res) => {
 // // -------------- start socker Io server ------------------
 // socketIoServer();
 
-// app.listen(port, () => {
-//   console.log(`you server is started at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+  console.log(`you server is started at http://localhost:${port}`);
+});
 
-// // Socket servers
-// globalSocketServer();
-// socketIoServer();
-
-// (async () => {
-  connectDB(); // 🔑 Ensure DB is connected
-
-  app.listen(port, () => {
-    console.log(`🚀 Server started on http://localhost:${port}`);
-  });
-
-  // Start sockets or other async features here
-  globalSocketServer();
-  socketIoServer();
-// })();
+// Socket servers
+globalSocketServer();
+socketIoServer();
