@@ -33,6 +33,8 @@ const socketIoServer = require("./socketIoServer.js");
 const backupRoute = require('./controller/backup/backupHandler')
 // ----------------- backup dirs --------------------------------
 
+const server = http.createServer(app); // 👈 IMPORTANT: shared server
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // router middleware
@@ -86,5 +88,5 @@ app.listen(port, () => {
 });
 
 // Socket servers
-globalSocketServer();
-socketIoServer();
+globalSocketServer(server);
+socketIoServer(server);
