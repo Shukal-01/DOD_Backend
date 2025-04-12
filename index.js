@@ -36,7 +36,13 @@ const backupRoute = require('./controller/backup/backupHandler')
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // router middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin: "*",
+  }
+));
+app.set('trust proxy', true);
+
 app.use(fileupload());
 
 app.use(express.static(path.join(__dirname, "assets")));
@@ -66,6 +72,7 @@ app.use("/form/*", formRoutes);
 
 // -------------------------------------
 app.use("/backup", backupRoute)
+
 // -------------------------------------
 
 app.use("/", (req, res) => {
