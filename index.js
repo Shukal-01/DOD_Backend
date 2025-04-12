@@ -12,7 +12,7 @@ const fileupload = require("express-fileupload");
 const app = express();
 
 //-----------------------------------------mongoose connection end
-const config = require("./config.js");
+const connectDB = require("./config.js");
 //-----------------------------------------mongoose connection end
 
 const loginRoutes = require("./routes/auth/routes");
@@ -81,10 +81,14 @@ app.use("/", (req, res) => {
 // // -------------- start socker Io server ------------------
 // socketIoServer();
 
-app.listen(port, () => {
-  console.log(`you server is started at http://localhost:${port}`);
-});
+(async () => {
+  await connectDB(); // 🔑 Ensure DB is connected
 
-// Socket servers
-globalSocketServer();
-socketIoServer();
+  app.listen(port, () => {
+    console.log(`🚀 Server started on http://localhost:${port}`);
+  });
+
+  // Start sockets or other async features here
+  globalSocketServer();
+  socketIoServer();
+})();
