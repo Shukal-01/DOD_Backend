@@ -26,6 +26,8 @@ const adminMiddleware = require("./middleware/admin.middleware");
 const patientMiddleware = require("./middleware/patient.middleware");
 const doctorMiddleware = require("./middleware/doctor.middleware");
 const serviceProviderMiddleware = require("./middleware/serviceProvider.middleware");
+const globalSocketServer = require("./globalSocketIoServer.js");
+const socketIoServer = require("./socketIoServer.js");
 
 // ----------------- backup dirs --------------------------------
 const backupRoute = require('./controller/backup/backupHandler')
@@ -69,6 +71,13 @@ app.use("/backup", backupRoute)
 app.use("/", (req, res) => {
   return res.status(404).json({ message: "error", detail: "page not found" });
 });
+
+// -------------- start global socket server ------------------
+globalSocketServer();
+
+// -------------- start socker Io server ------------------
+socketIoServer();
+
 app.listen(port, () => {
   console.log(`you server is started at http://localhost:${port}`);
 });
