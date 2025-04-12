@@ -28,6 +28,8 @@ const doctorMiddleware = require("./middleware/doctor.middleware");
 const serviceProviderMiddleware = require("./middleware/serviceProvider.middleware");
 const globalSocketServer = require("./globalSocketIoServer.js");
 const socketIoServer = require("./socketIoServer.js");
+const http = require("http");
+
 
 // ----------------- backup dirs --------------------------------
 const backupRoute = require('./controller/backup/backupHandler')
