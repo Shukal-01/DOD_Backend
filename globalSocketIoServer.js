@@ -14,6 +14,7 @@ function startGlobalSocketServer() {
       credentials: true,
     },
     transports: ["websocket", "polling"], // Ensure WebSocket is allowed
+    path: "/global"
   });
 
   const sockets = new Map();

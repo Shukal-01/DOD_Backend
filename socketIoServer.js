@@ -14,6 +14,7 @@ function startLocalSocketServer() {
       credentials: true,
     },
     transports: ["websocket", "polling"],
+    path: "/local"
   });
 
   const sockets = new Map();
