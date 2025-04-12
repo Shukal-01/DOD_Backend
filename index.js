@@ -36,12 +36,8 @@ const backupRoute = require('./controller/backup/backupHandler')
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // router middleware
-app.use(cors(
-  {
-    origin: "*",
-  }
-));
-app.set('trust proxy', true);
+app.use(cors());
+app.set('trust proxy', 1);
 
 app.use(fileupload());
 
@@ -79,12 +75,16 @@ app.use("/", (req, res) => {
   return res.status(404).json({ message: "error", detail: "page not found" });
 });
 
-// -------------- start global socket server ------------------
-globalSocketServer();
+// // -------------- start global socket server ------------------
+// globalSocketServer();
 
-// -------------- start socker Io server ------------------
-socketIoServer();
+// // -------------- start socker Io server ------------------
+// socketIoServer();
 
 app.listen(port, () => {
   console.log(`you server is started at http://localhost:${port}`);
 });
+
+// Socket servers
+globalSocketServer();
+socketIoServer();
